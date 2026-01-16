@@ -1,0 +1,1451 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A&S Real Estate & Builders | Islamabad</title>
+
+    <!-- Premium Fonts & Icons (FREE CDN) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ===================== ROOT VARIABLES ===================== */
+        :root {
+            --primary: #0D47A1;
+            --primary-light: #42A5F5;
+            --primary-dark: #002171;
+            --secondary: #FFD600;
+            --accent: #00C853;
+            --text: #263238;
+            --text-light: #546E7A;
+            --background: #F5F7FF;
+            --card-bg: rgba(255, 255, 255, 0.9);
+            --glass: rgba(255, 255, 255, 0.15);
+            --shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 30px 60px rgba(0, 0, 0, 0.15);
+            --transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        [data-theme="dark"] {
+            --primary: #64B5F6;
+            --primary-light: #90CAF9;
+            --primary-dark: #1976D2;
+            --secondary: #FFD54F;
+            --accent: #69F0AE;
+            --text: #E3F2FD;
+            --text-light: #90A4AE;
+            --background: #0a1929;
+            --card-bg: rgba(13, 71, 161, 0.1);
+            --glass: rgba(13, 71, 161, 0.15);
+            --shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            --shadow-hover: 0 30px 60px rgba(0, 0, 0, 0.6);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--text);
+            background: var(--background);
+            overflow-x: hidden;
+            transition: var(--transition);
+        }
+
+        /* ===================== PRELOADER WITH A&S LOGO ===================== */
+        .preloader {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 1s ease, visibility 1s ease;
+        }
+
+        .preloader.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .logo-animation {
+            position: relative;
+            width: 220px;
+            height: 220px;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        .logo-circle {
+            width: 100%;
+            height: 100%;
+            border: 10px solid var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            box-shadow: 0 0 60px rgba(255, 214, 0, 0.6);
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-text {
+            color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            text-align: center;
+            line-height: 1.1;
+            animation: glow 2s ease-in-out infinite alternate;
+            text-shadow: 0 0 20px rgba(255, 214, 0, 0.8);
+        }
+
+        .logo-text span {
+            font-size: 1.3rem;
+            font-weight: 700;
+            display: block;
+            margin-top: 8px;
+            letter-spacing: 2px;
+        }
+
+        .loading-bar {
+            width: 300px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            margin-top: 3rem;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(255, 214, 0, 0.3);
+        }
+
+        .loading-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary), #FFA000);
+            border-radius: 3px;
+            animation: loading 3s ease-in-out forwards;
+            box-shadow: 0 0 20px var(--secondary);
+        }
+
+        .preloader-text {
+            color: white;
+            margin-top: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 600;
+            animation: fadeInOut 2s ease-in-out infinite;
+            letter-spacing: 1px;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.08); }
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 15px rgba(255, 214, 0, 0.7); }
+            100% { text-shadow: 0 0 40px rgba(255, 214, 0, 1), 0 0 60px rgba(255, 214, 0, 0.7); }
+        }
+
+        @keyframes loading {
+            0% { width: 0%; }
+            50% { width: 70%; }
+            100% { width: 100%; }
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        /* ===================== ANIMATIONS & 3D EFFECTS ===================== */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(60px) scale(0.95) rotateX(-10deg); }
+            to { opacity: 1; transform: translateY(0) scale(1) rotateX(0deg); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-8px) rotate(1deg); }
+            75% { transform: translateY(-12px) rotate(-1deg); }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg) scale(1); }
+            100% { transform: rotate(360deg) scale(1.1); }
+        }
+
+        .fade-in { animation: fadeInUp 1s ease-out forwards; }
+        .float { animation: float 4s ease-in-out infinite; }
+
+        /* Particle Effect */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--primary-light);
+            border-radius: 50%;
+            opacity: 0.6;
+            animation: floatParticle 15s linear infinite;
+        }
+
+        @keyframes floatParticle {
+            0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { transform: translateY(-100px) translateX(100px); opacity: 0; }
+        }
+
+        /* ===================== NAVIGATION ===================== */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            z-index: 1000;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary-dark);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: var(--transition);
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo:hover { color: var(--primary); transform: scale(1.05); }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            position: relative;
+            font-size: 1.1rem;
+        }
+
+        .nav-links a:hover { color: var(--primary); transform: translateY(-2px); }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 3px;
+            bottom: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(90deg, var(--secondary), var(--accent));
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover::after { width: 100%; }
+
+        .toggles {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .toggle-btn {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border: none;
+            padding: 0.7rem 1.2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 5px 15px rgba(13, 71, 161, 0.4);
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+        }
+
+        .toggle-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(13, 71, 161, 0.6);
+        }
+
+        /* ===================== HERO SECTION ===================== */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+            position: relative;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 214, 0, 0.15) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            z-index: 2;
+            position: relative;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4.5rem;
+            font-weight: 900;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out;
+            letter-spacing: 1px;
+        }
+
+        .hero p {
+            font-size: 1.8rem;
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .cta-button {
+            background: linear-gradient(135deg, var(--secondary), #FFA000);
+            color: var(--primary-dark);
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.3rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 10px 30px rgba(255, 214, 0, 0.5);
+            animation: fadeInUp 1s ease-out 0.6s both;
+            font-family: 'Montserrat', sans-serif;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid transparent;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            transition: 0.5s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 214, 0, 0.7);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .cta-button:hover::before { left: 100%; }
+
+        /* ===================== STATS SECTION ===================== */
+        .stats-section {
+            background: var(--card-bg);
+            padding: 4rem 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: -5rem auto 5rem;
+            max-width: 1200px;
+            border-radius: 20px;
+            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 10;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem;
+            transition: var(--transition);
+            border-radius: 15px;
+            background: var(--glass);
+            backdrop-filter: blur(5px);
+        }
+
+        .stat-item:hover {
+            background: rgba(13, 71, 161, 0.1);
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        /* ===================== SECTIONS ===================== */
+        section {
+            padding: 5rem 5%;
+            opacity: 0;
+            transform: translateY(80px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+            position: relative;
+        }
+
+        section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .section-title {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 4rem;
+            color: var(--primary-dark);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            margin: 1.5rem auto;
+            border-radius: 3px;
+        }
+
+        /* ===================== ABOUT SECTION ===================== */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .about-text {
+            font-size: 1.2rem;
+            line-height: 1.9;
+            color: var(--text-light);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .about-text p::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-size: 1.5rem;
+        }
+
+        .about-image {
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            transform: perspective(1000px) rotateY(-5deg);
+        }
+
+        .about-image:hover {
+            transform: perspective(1000px) rotateY(0deg) scale(1.02);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .about-image:hover img { transform: scale(1.1); }
+
+        /* ===================== SERVICES ===================== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            padding: 2.5rem;
+            border-radius: 25px;
+            text-align: center;
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            transition: var(--transition);
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .service-card:hover::before { transform: scaleX(1); }
+
+        .service-card:hover {
+            transform: translateY(-15px) rotateX(5deg);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .service-icon {
+            font-size: 4rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            transition: var(--transition);
+        }
+
+        .service-card:hover .service-icon {
+            transform: scale(1.2) rotateY(360deg);
+            color: var(--secondary);
+        }
+
+        .service-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .service-card p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* ===================== SOCIETIES WITH LOCAL IMAGES ===================== */
+        .societies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .society-card {
+            background: var(--card-bg);
+            border-radius: 25px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            transform: perspective(1000px) rotateX(0deg);
+        }
+
+        .society-card:hover {
+            transform: perspective(1000px) rotateX(5deg) translateY(-10px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .society-image-container {
+            position: relative;
+            overflow: hidden;
+            height: 300px;
+        }
+
+        .society-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .society-card:hover .society-image { transform: scale(1.15); }
+
+        .society-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to top, rgba(13, 71, 161, 0.8), transparent);
+            opacity: 0;
+            transition: var(--transition);
+            display: flex;
+            align-items: flex-end;
+            padding: 2rem;
+        }
+
+        .society-card:hover .society-overlay { opacity: 1; }
+
+        .society-info {
+            padding: 2rem;
+            background: var(--card-bg);
+            transition: var(--transition);
+        }
+
+        .society-card:hover .society-info {
+            background: linear-gradient(135deg, var(--card-bg), rgba(13, 71, 161, 0.05));
+        }
+
+        .society-info h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.6rem;
+            color: var(--primary-dark);
+            margin-bottom: 0.8rem;
+        }
+
+        .society-info p {
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* ===================== TEAM SECTION WITH UPDATED IMAGE PATHS ===================== */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .team-card {
+            background: var(--card-bg);
+            border-radius: 25px;
+            padding: 2.5rem;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            backdrop-filter: blur(15px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .team-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--primary-light), transparent);
+            transform: rotate(45deg);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .team-card:hover::before { opacity: 0.1; }
+
+        .team-card:hover {
+            transform: translateY(-15px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .team-image-container {
+            position: relative;
+            width: 180px;
+            height: 180px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 8px solid var(--primary);
+            box-shadow: 0 10px 30px rgba(13, 71, 161, 0.3);
+            transition: var(--transition);
+        }
+
+        .team-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .team-card:hover .team-image { transform: scale(1.15); }
+
+        .team-card:hover .team-image-container {
+            border-color: var(--secondary);
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(255, 214, 0, 0.5);
+        }
+
+        .team-card h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.8rem;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .team-card .position {
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .team-card .description {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        .contact-info a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: var(--transition);
+            font-weight: 700;
+            padding: 0.8rem;
+            border-radius: 12px;
+            background: var(--glass);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-info a:hover {
+            color: var(--primary-dark);
+            background: var(--secondary);
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(255, 214, 0, 0.4);
+        }
+
+        /* ===================== CONTACT SECTION ===================== */
+        .contact-section {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary-light));
+            border-radius: 30px;
+            padding: 4rem;
+            color: white;
+            box-shadow: var(--shadow);
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, var(--secondary), transparent);
+            opacity: 0.1;
+            animation: rotate 20s linear infinite;
+        }
+
+        .contact-form {
+            position: relative;
+            z-index: 2;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.8rem;
+            font-weight: 800;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.1rem;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 1.2rem;
+            border: none;
+            border-radius: 15px;
+            background: var(--glass);
+            color: white;
+            font-size: 1.1rem;
+            transition: var(--transition);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 0 20px rgba(255, 214, 0, 0.4);
+            border-color: var(--secondary);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder { color: rgba(255, 255, 255, 0.7); }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--secondary), #FFA000);
+            color: var(--primary-dark);
+            padding: 1.2rem 3rem;
+            border: none;
+            border-radius: 50px;
+            font-weight: 900;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            box-shadow: 0 10px 30px rgba(255, 214, 0, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 15px 40px rgba(255, 214, 0, 0.6);
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+            transition: 0.5s;
+        }
+
+        .submit-btn:hover::before { left: 100%; }
+
+        /* ===================== FOOTER ===================== */
+        footer {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: white;
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 5rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('images/bahriyaenclave.webp') center/cover no-repeat;
+            opacity: 0.1;
+            z-index: 1;
+            filter: brightness(0.5);
+        }
+
+        footer > * {
+            position: relative;
+            z-index: 2;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 2rem;
+            transition: var(--transition);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: var(--glass);
+            backdrop-filter: blur(5px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .social-links a:hover {
+            color: var(--primary-dark);
+            background: var(--secondary);
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 20px rgba(255, 214, 0, 0.4);
+        }
+
+        /* ===================== WHATSAPP FLOATING BUTTON ===================== */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+            z-index: 999;
+            transition: var(--transition);
+            animation: float 3s ease-in-out infinite;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .whatsapp-float:hover {
+            transform: scale(1.15) translateY(-5px);
+            box-shadow: 0 15px 40px rgba(37, 211, 102, 0.6);
+        }
+
+        /* ===================== RESPONSIVE ===================== */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 3rem; }
+            .hero p { font-size: 1.4rem; }
+            .nav-links { display: none; }
+            .about-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 2.2rem; }
+            .stats-section { margin: -3rem auto 3rem; }
+            .contact-section { padding: 2.5rem; }
+            .logo-animation { width: 180px; height: 180px; }
+            .logo-text { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===================== A&S LOGO PRELOADER ===================== -->
+    <div class="preloader" id="preloader">
+        <div class="logo-animation">
+            <div class="logo-circle">
+                <div class="logo-text">
+                    A&S
+                    <span>Real Estate</span>
+                </div>
+            </div>
+        </div>
+        <div class="loading-bar">
+            <div class="loading-progress"></div>
+        </div>
+        <p class="preloader-text">Building Excellence in Real Estate...</p>
+    </div>
+
+    <!-- Particle Effect Background -->
+    <div class="particles" id="particles"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#home" class="logo">
+            <i class="fas fa-building"></i> A&S Real Estate
+        </a>
+        <div class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#societies">Areas</a>
+            <a href="#team">Team</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <div class="toggles">
+            <button class="toggle-btn" id="langToggle">
+                <i class="fas fa-language"></i> <span id="langText">اردو</span>
+            </button>
+            <button class="toggle-btn" id="themeToggle">
+                <i class="fas fa-moon"></i> <span id="themeText">Dark</span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1 class="fade-in" id="heroTitle">A&S Real Estate & Builders</h1>
+            <p class="fade-in" id="heroSubtitle">Your Trusted Partner in Islamabad's Premium Property Market</p>
+            <a href="#contact" class="cta-button fade-in">Get Free Consultation</a>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <div class="stats-section fade-in">
+        <div class="stat-item">
+            <div class="stat-number counter">500+</div>
+            <div class="stat-label">Properties Sold</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number counter">300+</div>
+            <div class="stat-label">Happy Clients</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number counter">15+</div>
+            <div class="stat-label">Years Experience</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number counter">6</div>
+            <div class="stat-label">Premium Areas</div>
+        </div>
+    </div>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2 class="section-title" id="aboutTitle">Why Choose Us?</h2>
+        <div class="about-grid">
+            <div class="about-text" id="aboutText">
+                <p>A&S Real Estate & Builders is Islamabad's premier real estate agency specializing in premium residential and commercial properties. With years of expertise in Bahria Enclave, Park View City, and other elite sectors, we provide unmatched service in property sales, purchases, and rentals.</p>
+                <br>
+                <p><strong>Our Mission:</strong> To provide transparent, professional, and profitable real estate solutions tailored to your needs.</p>
+                <br>
+                <p><strong>Our Vision:</strong> To be the most trusted real estate partner in Islamabad, delivering excellence with integrity.</p>
+            </div>
+            <div class="about-image">
+                <img src="images/bahriyaenclave.webp" alt="Islamabad Properties">
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services">
+        <h2 class="section-title" id="servicesTitle">Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <div class="service-icon"><i class="fas fa-home"></i></div>
+                <h3 id="service1Title">Property Sales</h3>
+                <p id="service1Desc">Sell your property at the best market price with our expert valuation and marketing strategies.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon"><i class="fas fa-handshake"></i></div>
+                <h3 id="service2Title">Property Purchase</h3>
+                <p id="service2Desc">Find your dream property in Islamabad's most prestigious societies with our personalized search.</p>
+            </div>
+            <div class="service-card fade-in">
+                <div class="service-icon"><i class="fas fa-key"></i></div>
+                <h3 id="service3Title">Rental Services</h3>
+                <p id="service3Desc">Hassle-free rental solutions for both tenants and property owners with complete documentation.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Societies Section with Local Images -->
+    <section id="societies">
+        <h2 class="section-title" id="societiesTitle">Our Exclusive Areas</h2>
+        <div class="societies-grid">
+            <div class="society-card fade-in">
+                <div class="society-image-container">
+                    <img src="images/bahriyaenclave.webp" alt="Bahria Enclave" class="society-image">
+                    <div class="society-overlay"></div>
+                </div>
+                <div class="society-info">
+                    <h3>Bahria Enclave</h3>
+                    <p>Islamabad's most luxurious gated community with world-class amenities and scenic views.</p>
+                </div>
+            </div>
+            <div class="society-card fade-in">
+                <div class="society-image-container">
+                    <img src="images/parkview.jpg" alt="Park View City" class="society-image">
+                    <div class="society-overlay"></div>
+                </div>
+                <div class="society-info">
+                    <h3>Park View City</h3>
+                    <p>Premium residential area offering modern infrastructure and lush green surroundings.</p>
+                </div>
+            </div>
+            <div class="society-card fade-in">
+                <div class="society-image-container">
+                    <img src="images/parkenclave.jpg" alt="Park Enclave" class="society-image">
+                    <div class="society-overlay"></div>
+                </div>
+                <div class="society-info">
+                    <h3>Park Enclave</h3>
+                    <p>Exclusive housing society with elegant design and top-tier facilities.</p>
+                </div>
+            </div>
+            <div class="society-card fade-in">
+                <div class="society-image-container">
+                    <img src="images/marggalaEnclave.webp" alt="Margalla Enclave" class="society-image">
+                    <div class="society-overlay"></div>
+                </div>
+                <div class="society-info">
+                    <h3>Margalla Enclave</h3>
+                    <p> Nestled near Margalla Hills, offering serene living with breathtaking natural beauty.</p>
+                </div>
+            </div>
+            <div class="society-card fade-in">
+                <div class="society-image-container">
+                    <img src="images/marggalaEnclave.webp" alt="Margalla Orchard" class="society-image">
+                    <div class="society-overlay"></div>
+                </div>
+                <div class="society-info">
+                    <h3>Margalla Orchard</h3>
+                    <p>Charming residential area perfect for families seeking peace and modern convenience.</p>
+                </div>
+            </div>
+            <div class="society-card fade-in">
+                <div class="society-image-container">
+                    <img src="images/phaofficersresidentia.webp" alt="PHA Officers Residencia" class="society-image">
+                    <div class="society-overlay"></div>
+                </div>
+                <div class="society-info">
+                    <h3>PHA Officers Residencia</h3>
+                    <p>Prestigious housing for officers on Kurri Road, Islamabad with excellent connectivity.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section with UPDATED Image Paths -->
+    <section id="team">
+        <h2 class="section-title" id="teamTitle">Meet Our Expert Team</h2>
+        <div class="team-grid">
+            <div class="team-card fade-in">
+                <div class="team-image-container">
+                    <!-- UPDATED: Changed to new filename -->
+                    <img src="images/Owner & Ceo.png" alt="Umer Aftab" class="team-image">
+                </div>
+                <h3>Umer Aftab</h3>
+                <p class="position">Owner & CEO</p>
+                <p class="description">Leading A&S with vision and expertise in premium real estate. Known for integrity, market knowledge, and client-focused approach.</p>
+                <div class="contact-info">
+                    <a href="tel:+923111544996"><i class="fas fa-phone"></i> +92 311 1544996</a>
+                    <a href="https://wa.me/923111544996"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    <a href="mailto:Umeraftab2948@gmail.com"><i class="fas fa-envelope"></i> Umeraftab2948@gmail.com</a>
+                </div>
+            </div>
+            <div class="team-card fade-in">
+                <div class="team-image-container">
+                    <!-- UPDATED: Changed to new filename -->
+                    <img src="images/Senior Property Consultant.png" alt="Bilal Aftab" class="team-image">
+                </div>
+                <h3>Bilal Aftab</h3>
+                <p class="position">Senior Property Consultant</p>
+                <p class="description">Expert in property valuation and client relations. Specializes in residential and commercial property deals.</p>
+                <div class="contact-info">
+                    <a href="tel:+923115496970"><i class="fas fa-phone"></i> +92 311 5496970</a>
+                    <a href="https://wa.me/923115496970"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title" id="contactTitle">Get In Touch</h2>
+        <div class="contact-section">
+            <form class="contact-form" id="contactForm">
+                <div class="form-group">
+                    <label for="name" id="formNameLabel">Your Name</label>
+                    <input type="text" id="name" required placeholder="John Doe">
+                </div>
+                <div class="form-group">
+                    <label for="phone" id="formPhoneLabel">Phone Number</label>
+                    <input type="tel" id="phone" required placeholder="+92 300 1234567">
+                </div>
+                <div class="form-group">
+                    <label for="email" id="formEmailLabel">Email Address</label>
+                    <input type="email" id="email" required placeholder="johndoe@example.com">
+                </div>
+                <div class="form-group">
+                    <label for="service" id="formServiceLabel">Interested Service</label>
+                    <input type="text" id="service" placeholder="Property Sale/Purchase/Rental">
+                </div>
+                <div class="form-group">
+                    <label for="message" id="formMessageLabel">Your Message</label>
+                    <textarea id="message" rows="5" placeholder="Tell us about your property needs..."></textarea>
+                </div>
+                <button type="submit" class="submit-btn" id="submitBtn">
+                    Send Message <i class="fas fa-paper-plane"></i>
+                </button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 A&S Real Estate & Builders. All Rights Reserved.</p>
+        <div class="social-links">
+            <a href="https://wa.me/923111544996"><i class="fab fa-whatsapp"></i></a>
+            <a href="mailto:Umeraftab2948@gmail.com"><i class="fas fa-envelope"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+        </div>
+        <p style="margin-top: 1.5rem; font-size: 1.1rem;">
+            <i class="fas fa-map-marker-alt"></i> Islamabad, Pakistan |
+            <span id="footerText">Professional Real Estate Services</span>
+        </p>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/923111544996" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script>
+        // ===================== PRELOADER =====================
+        window.addEventListener('load', () => {
+            const preloader = document.getElementById('preloader');
+            setTimeout(() => {
+                preloader.classList.add('hidden');
+                document.body.style.overflow = 'auto';
+            }, 3500); // Extended for better logo visibility
+        });
+
+        // ===================== PARTICLES =====================
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 50; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 15 + 's';
+            particle.style.animationDuration = (15 + Math.random() * 10) + 's';
+            particlesContainer.appendChild(particle);
+        }
+
+        // ===================== LANGUAGE TOGGLE =====================
+        const langData = {
+            en: {
+                langText: 'اردو',
+                heroTitle: 'A&S Real Estate & Builders',
+                heroSubtitle: 'Your Trusted Partner in Islamabad\'s Premium Property Market',
+                aboutTitle: 'Why Choose Us?',
+                aboutText: `<p>A&S Real Estate & Builders is Islamabad's premier real estate agency specializing in premium residential and commercial properties. With years of expertise in Bahria Enclave, Park View City, and other elite sectors, we provide unmatched service in property sales, purchases, and rentals.</p>
+                    <br><p><strong>Our Mission:</strong> To provide transparent, professional, and profitable real estate solutions tailored to your needs.</p>
+                    <br><p><strong>Our Vision:</strong> To be the most trusted real estate partner in Islamabad, delivering excellence with integrity.</p>`,
+                servicesTitle: 'Our Services',
+                service1Title: 'Property Sales',
+                service1Desc: 'Sell your property at the best market price with our expert valuation and marketing strategies.',
+                service2Title: 'Property Purchase',
+                service2Desc: 'Find your dream property in Islamabad\'s most prestigious societies with our personalized search.',
+                service3Title: 'Rental Services',
+                service3Desc: 'Hassle-free rental solutions for both tenants and property owners with complete documentation.',
+                societiesTitle: 'Our Exclusive Areas',
+                teamTitle: 'Meet Our Expert Team',
+                contactTitle: 'Get In Touch',
+                formNameLabel: 'Your Name',
+                formPhoneLabel: 'Phone Number',
+                formEmailLabel: 'Email Address',
+                formServiceLabel: 'Interested Service',
+                formMessageLabel: 'Your Message',
+                submitBtn: 'Send Message ',
+                footerText: 'Professional Real Estate Services'
+            },
+            ur: {
+                langText: 'English',
+                heroTitle: 'A&S ریئل اسٹیٹ اینڈ بلڈرز',
+                heroSubtitle: 'اسلام آباد کے پریمیئم پراپرٹی مارکیٹ میں آپ کا قابل اعتماد پارٹنر',
+                aboutTitle: 'ہمیں کیوں منتخب کریں؟',
+                aboutText: `<p>A&S ریئل اسٹیٹ اینڈ بلڈرز اسلام آباد کا معروف ریئل اسٹیٹ ایجنسی ہے جو پریمیئم رہائشی اور تجارتی پراپرٹیز میں مہارت رکھتا ہے۔ بحریہ انکلایو، پارک ویو سٹی اور دیگر نمایاں سیکٹرز میں سالوں کا تجربہ رکھتے ہوئے، ہم پراپرٹی فروخت، خرید اور کرایہ پر بے مثال خدمات فراہم کرتے ہیں۔</p>
+                    <br><p><strong>ہمارا مشن:</strong> آپ کی ضروریات کے مطابق شفاف، پیشہ ورانہ اور منافع بخش ریئل اسٹیٹ حل فراہم کرنا۔</p>
+                    <br><p><strong>ہماری وژن:</strong> اسلام آباد میں سب سے قابل اعتماد ریئل اسٹیٹ پارٹنر بننا، جو ایمانداری کے ساتھ بہترین خدمات فراہم کرے۔</p>`,
+                servicesTitle: 'ہماری خدمات',
+                service1Title: 'پراپرٹی فروخت',
+                service1Desc: 'اپنی پراپرٹی کو ماہر قدر و قیمت اور مارکیٹنگ حکمت عملی کے ساتھ بہترین مارکیٹ قیمت پر فروخت کریں۔',
+                service2Title: 'پراپرٹی خرید',
+                service2Desc: 'ہماری ذاتی نوعیت کی تلاش کے ساتھ اسلام آباد کے سب سے معزز سوسائٹیز میں اپنا خوابوں کا گھر تلاش کریں۔',
+                service3Title: 'کرایہ کی خدمات',
+                service3Desc: 'کرایہ داروں اور پراپرٹی مالکان دونوں کے لیے مکمل دستاویزات کے ساتھ پریشانی سے پاک کرایہ کے حل۔',
+                societiesTitle: 'ہمارے خصوصی علاقے',
+                teamTitle: 'ہمارے ماہر ٹیم سے ملاقات کریں',
+                contactTitle: 'رابطہ کریں',
+                formNameLabel: 'آپ کا نام',
+                formPhoneLabel: 'فون نمبر',
+                formEmailLabel: 'ای میل ایڈریس',
+                formServiceLabel: 'دلچسپی والی خدمت',
+                formMessageLabel: 'آپ کا پیغام',
+                submitBtn: 'پیغام بھیجیں ',
+                footerText: 'پیشہ ورانہ ریئل اسٹیٹ خدمات'
+            }
+        };
+
+        let currentLang = 'en';
+        const langToggle = document.getElementById('langToggle');
+        const langText = document.getElementById('langText');
+
+        langToggle.addEventListener('click', () => {
+            currentLang = currentLang === 'en' ? 'ur' : 'en';
+            updateLanguage();
+            document.body.style.opacity = '0.8';
+            setTimeout(() => { document.body.style.opacity = '1'; }, 300);
+        });
+
+        function updateLanguage() {
+            const data = langData[currentLang];
+            Object.keys(data).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) element.innerHTML = data[key];
+            });
+
+            document.documentElement.lang = currentLang;
+            document.body.style.direction = currentLang === 'ur' ? 'rtl' : 'ltr';
+        }
+
+        // ===================== THEME TOGGLE =====================
+        const themeToggle = document.getElementById('themeToggle');
+        const themeText = document.getElementById('themeText');
+        const html = document.documentElement;
+
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            html.setAttribute('data-theme', newTheme);
+            themeText.textContent = newTheme === 'light' ? 'Dark' : 'Light';
+
+            const icon = themeToggle.querySelector('i');
+            icon.className = newTheme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+        });
+
+        // ===================== SMOOTH SCROLL & ANIMATIONS =====================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        });
+
+        // Intersection Observer
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+
+                    if (entry.target.classList.contains('stats-section')) {
+                        animateCounters();
+                    }
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Counter Animation
+        function animateCounters() {
+            document.querySelectorAll('.stat-number').forEach(counter => {
+                const target = counter.innerText.replace(/[^0-9]/g, '');
+                let count = 0;
+                const increment = target / 50;
+                const timer = setInterval(() => {
+                    count += increment;
+                    if (count >= target) {
+                        counter.innerText = counter.innerText.replace(/[0-9]+/, target);
+                        clearInterval(timer);
+                    } else {
+                        counter.innerText = counter.innerText.replace(/[0-9]+/, Math.floor(count)) + (counter.innerText.includes('+') ? '+' : '');
+                    }
+                }, 40);
+            });
+        }
+
+        // ===================== FORM SUBMISSION =====================
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const submitBtn = document.getElementById('submitBtn');
+            submitBtn.innerHTML = '<i class="fas fa-check"></i> Sent!';
+            submitBtn.style.background = 'linear-gradient(135deg, #00C853, #009624)';
+
+            setTimeout(() => {
+                this.reset();
+                submitBtn.innerHTML = '<span id="submitBtnText">Send Message </span><i class="fas fa-paper-plane"></i>';
+                submitBtn.style.background = 'linear-gradient(135deg, var(--secondary), #FFA000)';
+                updateLanguage();
+            }, 3000);
+        });
+
+        // ===================== PARALLAX EFFECT =====================
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallax = document.querySelector('.hero');
+            parallax.style.transform = `translateY(${scrolled * 0.5}px)`;
+        });
+
+        // ===================== INITIALIZE =====================
+        document.addEventListener('DOMContentLoaded', () => {
+            document.body.style.overflow = 'hidden';
+
+            document.querySelectorAll('.service-card, .society-card, .team-card').forEach((card, index) => {
+                card.style.animationDelay = `${index * 0.2}s`;
+            });
+        });
+    </script>
+</body>
+</html>
